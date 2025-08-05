@@ -19,56 +19,17 @@
           <h1 id="sentenceDisplay" class="sentence-heading"></h1>
           <label for="fileInput" class="file-button">
             ลองเลือกรูปปปปปปป
-            <input type="file" accept="image/*" style="display: none" id="fileInput" />
+            <input
+              type="file"
+              accept="image/*"
+              style="display: none"
+              id="fileInput"
+            />
           </label>
         </div>
       </div>
     </div>
-    <script>
-      // Load the sentences from the JSON file
-      fetch('./sentence.json')
-        .then(response => response.json())
-        .then(data => {
-          // Store the sentences globally
-          window.allSentences = data.sentence;
-        })
-        .catch(error => console.error('Error loading sentences:', error));
 
-      // Get DOM elements
-      const fileInput = document.getElementById('fileInput');
-      const previewImage = document.getElementById('previewImage');
-      const emptyContainer = document.getElementById('emptyContainer');
-      const sentenceDisplay = document.getElementById('sentenceDisplay');
-
-      // Add event listener to file input
-      fileInput.addEventListener('change', onFileChange);
-
-      function onFileChange(e) {
-        if (e.target.files && e.target.files[0]) {
-          // Create object URL for the selected image
-          const imageUrl = URL.createObjectURL(e.target.files[0]);
-          
-          // Update the image source
-          previewImage.src = imageUrl;
-          previewImage.style.display = 'block';
-          
-          // Hide the empty container
-          emptyContainer.style.display = 'none';
-          
-          // Generate and display a random sentence
-          const randomSentence = getRandomSentence();
-          sentenceDisplay.textContent = randomSentence;
-        }
-      }
-
-      function getRandomSentence() {
-        // Make sure sentences are loaded
-        if (window.allSentences && window.allSentences.length > 0) {
-          // Get a random sentence from the array
-          return window.allSentences[Math.floor(Math.random() * window.allSentences.length)];
-        }
-        return 'สวยมากกกก'; // Default sentence if JSON hasn't loaded yet
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
